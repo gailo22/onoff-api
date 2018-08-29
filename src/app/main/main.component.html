@@ -1,1 +1,17 @@
-<mat-slide-toggle>Slide me!</mat-slide-toggle>
+<!-- <mat-selection-list #shoes>
+    <mat-list-option *ngFor="let shoe of typesOfShoes">
+      {{shoe}}
+    </mat-list-option>
+  </mat-selection-list>
+  
+  <p>
+    Options selected: {{shoes.selectedOptions.selected}}
+  </p> -->
+
+<mat-selection-list #list [(ngModel)]="selectedOptions" 
+(ngModelChange)="onNgModelChange($event)">
+    <mat-list-option *ngFor="let tta of taskTypeAreas" [value]="tta.name">
+        {{tta.name}}
+    </mat-list-option>
+</mat-selection-list>
+  

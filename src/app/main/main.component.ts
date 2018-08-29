@@ -7,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  color = 'accent';
-  checked = false;
-  disabled = false;
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+
+  taskTypeAreas: any[] = [{name: "a"}, {name: "b"}];
+
+  selectedOptions: any[];
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onNgModelChange(event) {
+    console.log(this.selectedOptions);
   }
 
 }
