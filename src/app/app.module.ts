@@ -4,9 +4,13 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatListModule } from '@angular/material/list';
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { JsonpModule, Jsonp, Response } from '@angular/http';
 
+import { JmxService } from './jmx.service';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -21,21 +25,22 @@ import { MainComponent } from './main/main.component';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MatButtonModule, 
+    ReactiveFormsModule,
+    JsonpModule,
+    HttpClientJsonpModule,
+    MatButtonModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatListModule
+    MatListModule,
+    HttpClientModule,
+    MatTabsModule
   ],
   exports: [
-    MatButtonModule, 
-    MatCheckboxModule, 
+    MatButtonModule,
+    MatCheckboxModule,
     MatSlideToggleModule
   ],
-  providers: [],
+  providers: [JmxService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-
-
-// http://localhost:8080/hawtio/jolokia/?maxDepth=7&maxCollectionSize=50000&ignoreErrors=true&canonicalNaming=false
-// {"type":"exec","mbean":"jmx4perl:type=Config,qualifier=hawtio","operation":"debugInfo()"}

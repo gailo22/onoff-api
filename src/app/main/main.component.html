@@ -1,17 +1,25 @@
-<!-- <mat-selection-list #shoes>
-    <mat-list-option *ngFor="let shoe of typesOfShoes">
-      {{shoe}}
-    </mat-list-option>
-  </mat-selection-list>
-  
-  <p>
-    Options selected: {{shoes.selectedOptions.selected}}
-  </p> -->
+<div class="button-row" layout-align="right">
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+    <button mat-raised-button color="accent" (click)="refresh()">Refresh</button>
+    <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+</div>
 
-<mat-selection-list #list [(ngModel)]="selectedOptions" 
-(ngModelChange)="onNgModelChange($event)">
-    <mat-list-option *ngFor="let tta of taskTypeAreas" [value]="tta.name">
-        {{tta.name}}
-    </mat-list-option>
-</mat-selection-list>
+<mat-tab-group>
+    <mat-tab label="Check status">
+        <mat-selection-list #list [(ngModel)]="selectedOperations" 
+        (ngModelChange)="onNgModelChange($event)">
+            <mat-list-option *ngFor="let id of checkOperations" [value]="id.api">
+                {{id.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-tab>
+    <mat-tab label="Submission">
+        <mat-selection-list #list [(ngModel)]="selectedOperations" 
+        (ngModelChange)="onNgModelChange($event)">
+            <mat-list-option *ngFor="let id of submissionOperations" [value]="id.api">
+                {{id.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-tab>
+  </mat-tab-group>
   
