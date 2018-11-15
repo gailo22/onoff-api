@@ -17,12 +17,18 @@ import {
   tap
 } from 'rxjs/operators';
 
+import { environment } from '../environments/environment';
+
 @Injectable()
 export class JmxService {
 
-  jmxUrl = 'http://bluesky.se.scb.co.th:8020/jolokia-war-1.3.7';
+  // jmxUrl = 'http://iprofiles01.devcloud.scb:8021/jolokia-war-1.3.7';
+  // jmxUrl = 'http://10.254.113.6:8022/jolokia-war-1.3.7'; // indi SIT
+  jmxUrl = environment.jmxUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    console.log('jmxUrl: ' + this.jmxUrl);
+  }
 
   getOperations(): Observable<string[]> {
     const jmxRequest = {
@@ -34,7 +40,7 @@ export class JmxService {
     return this.http.post<string[]>(this.jmxUrl, jmxRequest, httpOptions)
       .pipe(
         tap(x => console.log(x)),
-        map(x => x.value)
+        map<any, string[]>(x => x.value)
       );
 
     // return of(['CaptivaApi.getTicket']);

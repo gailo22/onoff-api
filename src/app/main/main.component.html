@@ -1,12 +1,23 @@
-<div class="button-row" layout-align="right">
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
-    <button mat-raised-button color="accent" (click)="refresh()">Refresh</button>
-    <button mat-raised-button color="warn" (click)="reset()">Reset</button>
-</div>
+<mat-toolbar>
+    <mat-toolbar-row layout-align="right">
+        <div class="button-row" layout-align="right">
+            <button mat-raised-button color="primary" (click)="save()">Save</button>
+            <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+            <button mat-raised-button color="accent" (click)="refresh()">Refresh</button>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
 
-<mat-tab-group>
+<mat-progress-spinner *ngIf='loadingIndicatorService.loading'
+    class="example-margin"
+    color="primary"
+    mode="indeterminate"
+    value="50">
+</mat-progress-spinner>
+
+<mat-tab-group *ngIf='!loadingIndicatorService.loading'>
     <mat-tab label="Check status">
-        <mat-selection-list #list [(ngModel)]="selectedOperations" 
+        <mat-selection-list #list [(ngModel)]="selectedCheckOperations" 
         (ngModelChange)="onNgModelChange($event)">
             <mat-list-option *ngFor="let id of checkOperations" [value]="id.api">
                 {{id.name}}
@@ -14,7 +25,7 @@
         </mat-selection-list>
     </mat-tab>
     <mat-tab label="Submission">
-        <mat-selection-list #list [(ngModel)]="selectedOperations" 
+        <mat-selection-list #list [(ngModel)]="selectedSubmissionOperations" 
         (ngModelChange)="onNgModelChange($event)">
             <mat-list-option *ngFor="let id of submissionOperations" [value]="id.api">
                 {{id.name}}
