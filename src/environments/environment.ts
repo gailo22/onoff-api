@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  jmxUrl: 'http://iprofiles01.devcloud.scb:8021/jolokia-war-1.3.7'
+  jmxUrl: 'http://iprofiles01.devcloud.scb:8021/jolokia-war-1.3.7',
+  version: '2.4'
 };
